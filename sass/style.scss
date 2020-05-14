@@ -23,6 +23,7 @@ nav {
             font-size: 1.2em;
             margin-left: 40px;
             transition: 200ms;
+            font-weight: 600;
 
             &:hover {
                color: darken($color: #fff, $amount: 30);

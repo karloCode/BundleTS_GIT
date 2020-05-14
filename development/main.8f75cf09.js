@@ -194,8 +194,148 @@ var reloadCSS = require('_css_loader');
 
 module.hot.dispose(reloadCSS);
 module.hot.accept(reloadCSS);
-},{"_css_loader":"../node_modules/parcel-bundler/src/builtins/css-loader.js"}],"../js/main.js":[function(require,module,exports) {
+},{"_css_loader":"../node_modules/parcel-bundler/src/builtins/css-loader.js"}],"../js/fetchApi.js":[function(require,module,exports) {
 "use strict";
+
+function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+function _defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } }
+
+function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _defineProperties(Constructor.prototype, protoProps); if (staticProps) _defineProperties(Constructor, staticProps); return Constructor; }
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+
+var FetchApi = /*#__PURE__*/function () {
+  function FetchApi() {
+    _classCallCheck(this, FetchApi);
+  }
+
+  _createClass(FetchApi, [{
+    key: "getAll",
+    value: function getAll(url) {
+      return fetch("".concat(url, "/"), {
+        method: 'get'
+      }).then(function (response) {
+        if (!response.ok) {
+          throw new Error(response.statusText);
+        }
+
+        return response.json();
+      });
+    }
+  }, {
+    key: "getOne",
+    value: function getOne(url, _id) {
+      return fetch("".concat(url, "/").concat(_id), {
+        method: 'get'
+      }).then(function (response) {
+        if (!response.ok) {
+          throw new Error(response.statusText);
+        }
+
+        return response.json();
+      });
+    }
+  }, {
+    key: "post",
+    value: function post(url, body) {
+      return fetch("".concat(url, "/"), {
+        method: 'post',
+        headers: {
+          "Content-Type": "application/json; charset=utf-8"
+        },
+        body: JSON.stringify(body)
+      }).then(function (response) {
+        if (!response.ok) {
+          return response.json();
+          throw new Error(response.statusText);
+        }
+
+        return response.json();
+      });
+    }
+  }, {
+    key: "put",
+    value: function put(url, _id, body) {
+      return fetch("".concat(url, "/").concat(_id), {
+        method: 'put',
+        headers: {
+          "Content-Type": "application/json; charset=utf-8"
+        },
+        body: JSON.stringify(body)
+      }).then(function (response) {
+        if (!response.ok) {
+          throw new Error(response.statusText);
+        }
+
+        return response.json();
+      });
+    }
+  }, {
+    key: "delete",
+    value: function _delete(url, _id) {
+      return fetch("".concat(url, "/").concat(_id), {
+        method: 'delete'
+      }).then(function (response) {
+        if (!response.ok) {
+          throw new Error(response.statusText);
+        }
+
+        return response.json();
+      });
+    }
+  }]);
+
+  return FetchApi;
+}();
+
+exports.default = FetchApi;
+},{}],"../js/getElements.js":[function(require,module,exports) {
+"use strict";
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+
+function queryHTMLElement(id) {
+  return document.querySelector("#".concat(id));
+}
+
+exports.queryHTMLElement = queryHTMLElement;
+
+function queryInputElements(id_s) {
+  return id_s.map(function (elem) {
+    return document.querySelector("#".concat(elem));
+  });
+}
+
+exports.queryInputElements = queryInputElements;
+
+function queryButtonElement(id) {
+  return document.querySelector("#".concat(id));
+}
+
+exports.queryButtonElement = queryButtonElement;
+
+function queryFormElement(id) {
+  return document.querySelector("#".concat(id));
+}
+
+exports.queryFormElement = queryFormElement;
+},{}],"../js/main.js":[function(require,module,exports) {
+"use strict";
+
+function asyncGeneratorStep(gen, resolve, reject, _next, _throw, key, arg) { try { var info = gen[key](arg); var value = info.value; } catch (error) { reject(error); return; } if (info.done) { resolve(value); } else { Promise.resolve(value).then(_next, _throw); } }
+
+function _asyncToGenerator(fn) { return function () { var self = this, args = arguments; return new Promise(function (resolve, reject) { var gen = fn.apply(self, args); function _next(value) { asyncGeneratorStep(gen, resolve, reject, _next, _throw, "next", value); } function _throw(err) { asyncGeneratorStep(gen, resolve, reject, _next, _throw, "throw", err); } _next(undefined); }); }; }
+
+var __importDefault = this && this.__importDefault || function (mod) {
+  return mod && mod.__esModule ? mod : {
+    "default": mod
+  };
+};
 
 Object.defineProperty(exports, "__esModule", {
   value: true
@@ -204,7 +344,44 @@ Object.defineProperty(exports, "__esModule", {
 require("../sass/helperClasses.scss");
 
 require("../sass/style.scss");
-},{"../sass/helperClasses.scss":"../sass/helperClasses.scss","../sass/style.scss":"../sass/style.scss"}],"../node_modules/parcel-bundler/src/builtins/hmr-runtime.js":[function(require,module,exports) {
+
+var fetchApi_1 = __importDefault(require("./fetchApi"));
+
+var api = new fetchApi_1.default();
+
+var getElements_1 = require("./getElements");
+
+var root = getElements_1.queryHTMLElement('root');
+
+_asyncToGenerator( /*#__PURE__*/regeneratorRuntime.mark(function _callee() {
+  var data;
+  return regeneratorRuntime.wrap(function _callee$(_context) {
+    while (1) {
+      switch (_context.prev = _context.next) {
+        case 0:
+          _context.prev = 0;
+          _context.next = 3;
+          return api.getAll('https://young-reef-15976.herokuapp.com');
+
+        case 3:
+          data = _context.sent;
+          console.log(data);
+          _context.next = 10;
+          break;
+
+        case 7:
+          _context.prev = 7;
+          _context.t0 = _context["catch"](0);
+          console.log(_context.t0);
+
+        case 10:
+        case "end":
+          return _context.stop();
+      }
+    }
+  }, _callee, null, [[0, 7]]);
+}))();
+},{"../sass/helperClasses.scss":"../sass/helperClasses.scss","../sass/style.scss":"../sass/style.scss","./fetchApi":"../js/fetchApi.js","./getElements":"../js/getElements.js"}],"../node_modules/parcel-bundler/src/builtins/hmr-runtime.js":[function(require,module,exports) {
 var global = arguments[3];
 var OVERLAY_ID = '__parcel__error__overlay__';
 var OldModule = module.bundle.Module;
@@ -232,11 +409,7 @@ var parent = module.bundle.parent;
 if ((!parent || !parent.isParcelRequire) && typeof WebSocket !== 'undefined') {
   var hostname = "" || location.hostname;
   var protocol = location.protocol === 'https:' ? 'wss' : 'ws';
-<<<<<<< HEAD
-  var ws = new WebSocket(protocol + '://' + hostname + ':' + "65045" + '/');
-=======
-  var ws = new WebSocket(protocol + '://' + hostname + ':' + "65085" + '/');
->>>>>>> navbarArea
+  var ws = new WebSocket(protocol + '://' + hostname + ':' + "49168" + '/');
 
   ws.onmessage = function (event) {
     checkedAssets = {};

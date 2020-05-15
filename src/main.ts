@@ -63,6 +63,6 @@ function getPerson(item: NodeListOf<Element>) {
             window.location.href = homeUrl;
          }
          
-      })
-   })
+      });
+   });
 }

@@ -12,8 +12,7 @@ import {
 } from './getElements';
 
 const root = element('root');
-const nav = document.querySelector('nav') !;
-console.log(nav.offsetHeight);
+
  
 (async function() {
    try {

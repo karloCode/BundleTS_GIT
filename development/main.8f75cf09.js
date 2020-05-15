@@ -117,9 +117,6 @@ parcelRequire = (function (modules, cache, entry, globalName) {
   }
 
   return newRequire;
-<<<<<<< HEAD
-})({"../node_modules/core-js/library/modules/_global.js":[function(require,module,exports) {
-=======
 })({"../node_modules/regenerator-runtime/runtime.js":[function(require,module,exports) {
 /**
  * Copyright (c) 2014-present, Facebook, Inc.
@@ -894,7 +891,6 @@ module.exports = function (TO_STRING) {
 module.exports = true;
 
 },{}],"../node_modules/core-js/library/modules/_global.js":[function(require,module,exports) {
->>>>>>> API
 
 // https://github.com/zloirock/core-js/issues/86#issuecomment-115759028
 var global = module.exports = typeof window != 'undefined' && window.Math == Math
@@ -1099,9 +1095,6 @@ $export.U = 64;  // safe
 $export.R = 128; // real proto method for `library`
 module.exports = $export;
 
-<<<<<<< HEAD
-},{"./_global":"../node_modules/core-js/library/modules/_global.js","./_core":"../node_modules/core-js/library/modules/_core.js","./_ctx":"../node_modules/core-js/library/modules/_ctx.js","./_hide":"../node_modules/core-js/library/modules/_hide.js","./_has":"../node_modules/core-js/library/modules/_has.js"}],"../node_modules/core-js/library/modules/es6.object.define-property.js":[function(require,module,exports) {
-=======
 },{"./_global":"../node_modules/core-js/library/modules/_global.js","./_core":"../node_modules/core-js/library/modules/_core.js","./_ctx":"../node_modules/core-js/library/modules/_ctx.js","./_hide":"../node_modules/core-js/library/modules/_hide.js","./_has":"../node_modules/core-js/library/modules/_has.js"}],"../node_modules/core-js/library/modules/_redefine.js":[function(require,module,exports) {
 module.exports = require('./_hide');
 
@@ -2275,7 +2268,6 @@ function _asyncToGenerator(fn) {
 
 module.exports = _asyncToGenerator;
 },{"../core-js/promise":"../node_modules/@babel/runtime-corejs2/core-js/promise.js"}],"../node_modules/core-js/library/modules/es6.object.define-property.js":[function(require,module,exports) {
->>>>>>> API
 var $export = require('./_export');
 // 19.1.2.4 / 15.2.3.6 Object.defineProperty(O, P, Attributes)
 $export($export.S + $export.F * !require('./_descriptors'), 'Object', { defineProperty: require('./_object-dp').f });
@@ -2513,8 +2505,6 @@ var _defineProperty = _interopRequireDefault(require("@babel/runtime-corejs2/cor
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 (0, _defineProperty.default)(exports, "__esModule", {
-<<<<<<< HEAD
-=======
   value: true
 });
 
@@ -2561,16 +2551,12 @@ var __importDefault = void 0 && (void 0).__importDefault || function (mod) {
 };
 
 (0, _defineProperty.default)(exports, "__esModule", {
->>>>>>> API
   value: true
 });
 
 require("../sass/helperClasses.scss");
 
 require("../sass/style.scss");
-<<<<<<< HEAD
-},{"@babel/runtime-corejs2/core-js/object/define-property":"../node_modules/@babel/runtime-corejs2/core-js/object/define-property.js","../sass/helperClasses.scss":"../sass/helperClasses.scss","../sass/style.scss":"../sass/style.scss"}],"../node_modules/parcel-bundler/src/builtins/hmr-runtime.js":[function(require,module,exports) {
-=======
 
 var fetchApi_1 = __importDefault(require("./fetchApi"));
 
@@ -2579,8 +2565,6 @@ var api = new fetchApi_1.default();
 var getElements_1 = require("./getElements");
 
 var root = getElements_1.queryHTMLElement('root');
-var nav = document.querySelector('nav');
-console.log(nav.offsetHeight);
 (0, _asyncToGenerator2.default)( /*#__PURE__*/_regenerator.default.mark(function _callee() {
   var data, tempContentStore;
   return _regenerator.default.wrap(function _callee$(_context) {
@@ -2618,7 +2602,6 @@ console.log(nav.offsetHeight);
   }, _callee, null, [[0, 10]]);
 }))();
 },{"@babel/runtime-corejs2/regenerator":"../node_modules/@babel/runtime-corejs2/regenerator/index.js","@babel/runtime-corejs2/helpers/asyncToGenerator":"../node_modules/@babel/runtime-corejs2/helpers/asyncToGenerator.js","@babel/runtime-corejs2/core-js/object/define-property":"../node_modules/@babel/runtime-corejs2/core-js/object/define-property.js","../sass/helperClasses.scss":"../sass/helperClasses.scss","../sass/style.scss":"../sass/style.scss","./fetchApi":"../js/fetchApi.js","./getElements":"../js/getElements.js"}],"../node_modules/parcel-bundler/src/builtins/hmr-runtime.js":[function(require,module,exports) {
->>>>>>> API
 var global = arguments[3];
 var OVERLAY_ID = '__parcel__error__overlay__';
 var OldModule = module.bundle.Module;
@@ -2646,11 +2629,7 @@ var parent = module.bundle.parent;
 if ((!parent || !parent.isParcelRequire) && typeof WebSocket !== 'undefined') {
   var hostname = "" || location.hostname;
   var protocol = location.protocol === 'https:' ? 'wss' : 'ws';
-<<<<<<< HEAD
-  var ws = new WebSocket(protocol + '://' + hostname + ':' + "51130" + '/');
-=======
-  var ws = new WebSocket(protocol + '://' + hostname + ':' + "50013" + '/');
->>>>>>> API
+  var ws = new WebSocket(protocol + '://' + hostname + ':' + "52016" + '/');
 
   ws.onmessage = function (event) {
     checkedAssets = {};

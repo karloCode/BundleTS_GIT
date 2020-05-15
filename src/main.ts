@@ -123,13 +123,20 @@ function submitAddForm(form: HTMLFormElement, formBody: object) {
             window.location.href = homeUrl;
 
       } catch (error) {
+         console.clear()
          console.log(error);
+         console.log({ errors })
          const errorMsgs = element('errorMsgs');
-         errors.forEach((err, index) => {
+
+         errorMsgs.innerHTML = '';
+         errors.forEach(err => {
             errorMsgs.innerHTML += `
-               <li class="warning err-msg">${err} <span class="close-btn" id="${index}">&times;</span></li>
+               <li class="warning err-msg">${err} <span class="close-btn">&times;</span></li>
             `;
          })
+
+         
+         
 
          const list = listElem('err-msg');
          list.forEach(li => {

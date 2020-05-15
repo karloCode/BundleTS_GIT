@@ -3345,16 +3345,21 @@ function submitAddForm(form, formBody) {
 
             case 9:
               window.location.href = homeUrl;
-              _context3.next = 19;
+              _context3.next = 22;
               break;
 
             case 12:
               _context3.prev = 12;
               _context3.t0 = _context3["catch"](2);
+              console.clear();
               console.log(_context3.t0);
+              console.log({
+                errors: errors
+              });
               errorMsgs = getElements_1.queryHTMLElement('errorMsgs');
-              errors.forEach(function (err, index) {
-                errorMsgs.innerHTML += "\n               <li class=\"warning err-msg\">".concat(err, " <span class=\"close-btn\" id=\"").concat(index, "\">&times;</span></li>\n            ");
+              errorMsgs.innerHTML = '';
+              errors.forEach(function (err) {
+                errorMsgs.innerHTML += "\n               <li class=\"warning err-msg\">".concat(err, " <span class=\"close-btn\">&times;</span></li>\n            ");
               });
               list = getElements_1.queryListElements('err-msg');
               list.forEach(function (li) {
@@ -3363,7 +3368,7 @@ function submitAddForm(form, formBody) {
                 });
               });
 
-            case 19:
+            case 22:
             case "end":
               return _context3.stop();
           }
@@ -3404,7 +3409,7 @@ var parent = module.bundle.parent;
 if ((!parent || !parent.isParcelRequire) && typeof WebSocket !== 'undefined') {
   var hostname = "" || location.hostname;
   var protocol = location.protocol === 'https:' ? 'wss' : 'ws';
-  var ws = new WebSocket(protocol + '://' + hostname + ':' + "49487" + '/');
+  var ws = new WebSocket(protocol + '://' + hostname + ':' + "50463" + '/');
 
   ws.onmessage = function (event) {
     checkedAssets = {};

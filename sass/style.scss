@@ -9,12 +9,20 @@
 
 .btn {
    border: 1px #ffffff solid;
-   border-radius: 3px;;
+   border-radius: 6px;;
    color: #fff;
    padding: 8px 15px;
    font-size: 1.1em;
    transition: 200ms;
    cursor: pointer;
+
+   &:focus {
+      outline-color: #fff;
+   }
+
+   &:active {
+      outline-color: #fff;
+   }
 }
 
 .dark {
@@ -129,9 +137,9 @@ nav {
 
 
 
-#addForm {
+#addForm, #editForm {
    
-   #name, #age, #gender {
+   #name, #age, #gender, #editName, #editAge, #editGender {
       padding: 8px 5px;
       display: block;
       width: 100%;

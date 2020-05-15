@@ -38,7 +38,7 @@ function getPerson(item) {
             try {
                 const data = await api.getOne('https://young-reef-15976.herokuapp.com/getPerson', i.id);
                 data.forEach(i => {
-                    const { name, age, gender } = i;
+                    const { _id, name, age, gender } = i;
                     root.innerHTML = `
                   <ul>
                      <li class="list-group-item">Name: ${name}</li>
@@ -48,6 +48,10 @@ function getPerson(item) {
                   <button class="btn primary" id="editBtn">Edit</button>
                   <button class="btn danger" id="delBtn">Delete</button>
                `;
+                    const delBtn = getElements_1.queryButtonElement('delBtn');
+                    const editBtn = getElements_1.queryButtonElement('editBtn');
+                    editPerson(editBtn, i);
+                    deletePerson(delBtn, _id);
                 });
             }
             catch (error) {
@@ -55,6 +59,54 @@ function getPerson(item) {
                 window.location.href = homeUrl;
             }
         });
+    });
+}
+function editPerson(editBtn, person) {
+    editBtn.addEventListener('click', () => {
+        const { _id, name, age, gender } = person;
+        root.innerHTML = `
+         <form id="editForm">
+            <input type="text" id="editName" name="name" class="add-inputs" placeholder="Name" value="${name}">
+            <input type="number" id="editAge" name="age" class="add-inputs" placeholder="Age" value="${age}">
+            <input type="text" id="editGender" name="gender" class="add-inputs" placeholder="Gender" value="${gender}">
+            <input type="submit" class="btn success" value="Submit">
+            <button class="btn dark" id="cancelEdit">Cancel</button>
+         </form>
+      `;
+        const editForm = getElements_1.queryFormElement('editForm');
+        const cancelEdit = getElements_1.queryButtonElement('cancelEdit');
+        cancelEdit.addEventListener('click', () => {
+            window.location.href = homeUrl;
+        });
+        const inputs = getElements_1.queryInputElements(['editName', 'editAge', 'editGender']);
+        const formBody = getInputs(inputs);
+        editForm.addEventListener('submit', async function (e) {
+            e.preventDefault();
+            try {
+                const data = await api.put('https://young-reef-15976.herokuapp.com/updatePerson', _id, formBody);
+                if (data.error) {
+                    throw new Error(data.error);
+                }
+                window.location.href = homeUrl;
+            }
+            catch (error) {
+                console.log(error);
+            }
+        });
+    });
+}
+function deletePerson(delBtn, _id) {
+    delBtn.addEventListener('click', async () => {
+        try {
+            const data = await api.delete('https://young-reef-15976.herokuapp.com/deletePerson', _id);
+            if (data.error) {
+                throw new Error(data.error);
+            }
+            window.location.href = homeUrl;
+        }
+        catch (error) {
+            console.log(error);
+        }
     });
 }
 (function () {

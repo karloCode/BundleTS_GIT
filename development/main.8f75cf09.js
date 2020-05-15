@@ -3271,10 +3271,15 @@ function getPerson(item) {
             case 3:
               data = _context2.sent;
               data.forEach(function (i) {
-                var name = i.name,
+                var _id = i._id,
+                    name = i.name,
                     age = i.age,
                     gender = i.gender;
                 root.innerHTML = "\n                  <ul>\n                     <li class=\"list-group-item\">Name: ".concat(name, "</li>\n                     <li class=\"list-group-item\">Age: ").concat(age, "</li>\n                     <li class=\"list-group-item\">Gender: ").concat(gender, "</li>\n                  </ul>\n                  <button class=\"btn primary\" id=\"editBtn\">Edit</button>\n                  <button class=\"btn danger\" id=\"delBtn\">Delete</button>\n               ");
+                var delBtn = getElements_1.queryButtonElement('delBtn');
+                var editBtn = getElements_1.queryButtonElement('editBtn');
+                editPerson(editBtn, i);
+                deletePerson(delBtn, _id);
               });
               _context2.next = 11;
               break;
@@ -3293,6 +3298,107 @@ function getPerson(item) {
       }, _callee2, null, [[0, 7]]);
     })));
   });
+}
+
+function editPerson(editBtn, person) {
+  editBtn.addEventListener('click', function () {
+    var _id = person._id,
+        name = person.name,
+        age = person.age,
+        gender = person.gender;
+    root.innerHTML = "\n         <form id=\"editForm\">\n            <input type=\"text\" id=\"editName\" name=\"name\" class=\"add-inputs\" placeholder=\"Name\" value=\"".concat(name, "\">\n            <input type=\"number\" id=\"editAge\" name=\"age\" class=\"add-inputs\" placeholder=\"Age\" value=\"").concat(age, "\">\n            <input type=\"text\" id=\"editGender\" name=\"gender\" class=\"add-inputs\" placeholder=\"Gender\" value=\"").concat(gender, "\">\n            <input type=\"submit\" class=\"btn success\" value=\"Submit\">\n            <button class=\"btn dark\" id=\"cancelEdit\">Cancel</button>\n         </form>\n      ");
+    var editForm = getElements_1.queryFormElement('editForm');
+    var cancelEdit = getElements_1.queryButtonElement('cancelEdit');
+    cancelEdit.addEventListener('click', function () {
+      window.location.href = homeUrl;
+    });
+    var inputs = getElements_1.queryInputElements(['editName', 'editAge', 'editGender']);
+    var formBody = getInputs(inputs);
+    editForm.addEventListener('submit', /*#__PURE__*/function () {
+      var _ref3 = (0, _asyncToGenerator2.default)( /*#__PURE__*/_regenerator.default.mark(function _callee3(e) {
+        var data;
+        return _regenerator.default.wrap(function _callee3$(_context3) {
+          while (1) {
+            switch (_context3.prev = _context3.next) {
+              case 0:
+                e.preventDefault();
+                _context3.prev = 1;
+                _context3.next = 4;
+                return api.put('https://young-reef-15976.herokuapp.com/updatePerson', _id, formBody);
+
+              case 4:
+                data = _context3.sent;
+
+                if (!data.error) {
+                  _context3.next = 7;
+                  break;
+                }
+
+                throw new Error(data.error);
+
+              case 7:
+                window.location.href = homeUrl;
+                _context3.next = 13;
+                break;
+
+              case 10:
+                _context3.prev = 10;
+                _context3.t0 = _context3["catch"](1);
+                console.log(_context3.t0);
+
+              case 13:
+              case "end":
+                return _context3.stop();
+            }
+          }
+        }, _callee3, null, [[1, 10]]);
+      }));
+
+      return function (_x) {
+        return _ref3.apply(this, arguments);
+      };
+    }());
+  });
+}
+
+function deletePerson(delBtn, _id) {
+  delBtn.addEventListener('click', /*#__PURE__*/(0, _asyncToGenerator2.default)( /*#__PURE__*/_regenerator.default.mark(function _callee4() {
+    var data;
+    return _regenerator.default.wrap(function _callee4$(_context4) {
+      while (1) {
+        switch (_context4.prev = _context4.next) {
+          case 0:
+            _context4.prev = 0;
+            _context4.next = 3;
+            return api.delete('https://young-reef-15976.herokuapp.com/deletePerson', _id);
+
+          case 3:
+            data = _context4.sent;
+
+            if (!data.error) {
+              _context4.next = 6;
+              break;
+            }
+
+            throw new Error(data.error);
+
+          case 6:
+            window.location.href = homeUrl;
+            _context4.next = 12;
+            break;
+
+          case 9:
+            _context4.prev = 9;
+            _context4.t0 = _context4["catch"](0);
+            console.log(_context4.t0);
+
+          case 12:
+          case "end":
+            return _context4.stop();
+        }
+      }
+    }, _callee4, null, [[0, 9]]);
+  })));
 }
 
 (function () {
@@ -3320,23 +3426,23 @@ function getInputs(inputs) {
 
 function submitAddForm(form, formBody) {
   form.addEventListener('submit', /*#__PURE__*/function () {
-    var _ref3 = (0, _asyncToGenerator2.default)( /*#__PURE__*/_regenerator.default.mark(function _callee3(e) {
+    var _ref5 = (0, _asyncToGenerator2.default)( /*#__PURE__*/_regenerator.default.mark(function _callee5(e) {
       var errors, data, errorMsgs, list;
-      return _regenerator.default.wrap(function _callee3$(_context3) {
+      return _regenerator.default.wrap(function _callee5$(_context5) {
         while (1) {
-          switch (_context3.prev = _context3.next) {
+          switch (_context5.prev = _context5.next) {
             case 0:
               e.preventDefault();
               errors = [];
-              _context3.prev = 2;
-              _context3.next = 5;
+              _context5.prev = 2;
+              _context5.next = 5;
               return api.post('https://young-reef-15976.herokuapp.com/addPerson', formBody);
 
             case 5:
-              data = _context3.sent;
+              data = _context5.sent;
 
               if (!data.error) {
-                _context3.next = 9;
+                _context5.next = 9;
                 break;
               }
 
@@ -3345,14 +3451,14 @@ function submitAddForm(form, formBody) {
 
             case 9:
               window.location.href = homeUrl;
-              _context3.next = 22;
+              _context5.next = 22;
               break;
 
             case 12:
-              _context3.prev = 12;
-              _context3.t0 = _context3["catch"](2);
+              _context5.prev = 12;
+              _context5.t0 = _context5["catch"](2);
               console.clear();
-              console.log(_context3.t0);
+              console.log(_context5.t0);
               console.log({
                 errors: errors
               });
@@ -3370,14 +3476,14 @@ function submitAddForm(form, formBody) {
 
             case 22:
             case "end":
-              return _context3.stop();
+              return _context5.stop();
           }
         }
-      }, _callee3, null, [[2, 12]]);
+      }, _callee5, null, [[2, 12]]);
     }));
 
-    return function (_x) {
-      return _ref3.apply(this, arguments);
+    return function (_x2) {
+      return _ref5.apply(this, arguments);
     };
   }());
 }
@@ -3409,7 +3515,7 @@ var parent = module.bundle.parent;
 if ((!parent || !parent.isParcelRequire) && typeof WebSocket !== 'undefined') {
   var hostname = "" || location.hostname;
   var protocol = location.protocol === 'https:' ? 'wss' : 'ws';
-  var ws = new WebSocket(protocol + '://' + hostname + ':' + "49576" + '/');
+  var ws = new WebSocket(protocol + '://' + hostname + ':' + "50575" + '/');
 
   ws.onmessage = function (event) {
     checkedAssets = {};

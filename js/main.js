@@ -99,11 +99,14 @@ function submitAddForm(form, formBody) {
             window.location.href = homeUrl;
         }
         catch (error) {
+            console.clear();
             console.log(error);
+            console.log({ errors });
             const errorMsgs = getElements_1.queryHTMLElement('errorMsgs');
-            errors.forEach((err, index) => {
+            errorMsgs.innerHTML = '';
+            errors.forEach(err => {
                 errorMsgs.innerHTML += `
-               <li class="warning err-msg">${err} <span class="close-btn" id="${index}">&times;</span></li>
+               <li class="warning err-msg">${err} <span class="close-btn">&times;</span></li>
             `;
             });
             const list = getElements_1.queryListElements('err-msg');

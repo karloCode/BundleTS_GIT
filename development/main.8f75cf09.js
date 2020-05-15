@@ -2565,8 +2565,6 @@ var api = new fetchApi_1.default();
 var getElements_1 = require("./getElements");
 
 var root = getElements_1.queryHTMLElement('root');
-var nav = document.querySelector('nav');
-console.log(nav.offsetHeight);
 (0, _asyncToGenerator2.default)( /*#__PURE__*/_regenerator.default.mark(function _callee() {
   var data, tempContentStore;
   return _regenerator.default.wrap(function _callee$(_context) {
@@ -2631,7 +2629,11 @@ var parent = module.bundle.parent;
 if ((!parent || !parent.isParcelRequire) && typeof WebSocket !== 'undefined') {
   var hostname = "" || location.hostname;
   var protocol = location.protocol === 'https:' ? 'wss' : 'ws';
+<<<<<<< HEAD
   var ws = new WebSocket(protocol + '://' + hostname + ':' + "52099" + '/');
+=======
+  var ws = new WebSocket(protocol + '://' + hostname + ':' + "52016" + '/');
+>>>>>>> master
 
   ws.onmessage = function (event) {
     checkedAssets = {};

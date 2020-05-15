@@ -9,8 +9,6 @@ const fetchApi_1 = __importDefault(require("./fetchApi"));
 const api = new fetchApi_1.default();
 const getElements_1 = require("./getElements");
 const root = getElements_1.queryHTMLElement('root');
-const nav = document.querySelector('nav');
-console.log(nav.offsetHeight);
 (async function () {
     try {
         const data = await api.getAll('https://young-reef-15976.herokuapp.com');

@@ -25,6 +25,8 @@ console.log(nav.offsetHeight);
          tempContentStore += `
             <li class="list-group-item">Name: ${name}</li>
          `;
+
+         
       });
 
       root.innerHTML = `

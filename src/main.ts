@@ -39,7 +39,7 @@ const homeUrl: string = window.location.href;
       getPerson(list);
 
    } catch (error) {
-      console.log('something is wrong')
+      console.log(error)
    }
 })();
 

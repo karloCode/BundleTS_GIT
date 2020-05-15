@@ -2533,6 +2533,12 @@ function queryFormElement(id) {
 }
 
 exports.queryFormElement = queryFormElement;
+
+function queryListElements(className) {
+  return document.querySelectorAll(".".concat(className));
+}
+
+exports.queryListElements = queryListElements;
 },{"@babel/runtime-corejs2/core-js/object/define-property":"../node_modules/@babel/runtime-corejs2/core-js/object/define-property.js"}],"../js/main.js":[function(require,module,exports) {
 "use strict";
 
@@ -2565,8 +2571,9 @@ var api = new fetchApi_1.default();
 var getElements_1 = require("./getElements");
 
 var root = getElements_1.queryHTMLElement('root');
+var homeUrl = window.location.href;
 (0, _asyncToGenerator2.default)( /*#__PURE__*/_regenerator.default.mark(function _callee() {
-  var data, tempContentStore;
+  var data, tempContentStore, list;
   return _regenerator.default.wrap(function _callee$(_context) {
     while (1) {
       switch (_context.prev = _context.next) {
@@ -2579,28 +2586,69 @@ var root = getElements_1.queryHTMLElement('root');
           data = _context.sent;
           tempContentStore = "";
           data.forEach(function (person) {
-            var name = person.name,
+            var _id = person._id,
+                name = person.name,
                 age = person.age,
                 gender = person.gender;
-            tempContentStore += "\n            <li class=\"list-group-item\">Name: ".concat(name, "</li>\n         ");
+            tempContentStore += "\n            <li class=\"list-group-item\" id=\"".concat(_id, "\" id=\"").concat(_id, "\">Name: ").concat(name, "</li>\n         ");
           });
           root.innerHTML = "\n         <ul id=\"listGroup\" class=\"hc-d-block\">\n            ".concat(tempContentStore, "\n         </ul>\n      ");
-          console.log(data);
-          _context.next = 13;
+          list = getElements_1.queryListElements('list-group-item');
+          getPerson(list);
+          _context.next = 14;
           break;
 
-        case 10:
-          _context.prev = 10;
+        case 11:
+          _context.prev = 11;
           _context.t0 = _context["catch"](0);
           console.log('something is wrong');
 
-        case 13:
+        case 14:
         case "end":
           return _context.stop();
       }
     }
-  }, _callee, null, [[0, 10]]);
+  }, _callee, null, [[0, 11]]);
 }))();
+
+function getPerson(item) {
+  item.forEach(function (i) {
+    i.addEventListener('click', /*#__PURE__*/(0, _asyncToGenerator2.default)( /*#__PURE__*/_regenerator.default.mark(function _callee2() {
+      var data;
+      return _regenerator.default.wrap(function _callee2$(_context2) {
+        while (1) {
+          switch (_context2.prev = _context2.next) {
+            case 0:
+              _context2.prev = 0;
+              _context2.next = 3;
+              return api.getOne('https://young-reef-15976.herokuapp.com/getPerson', i.id);
+
+            case 3:
+              data = _context2.sent;
+              data.forEach(function (i) {
+                var name = i.name,
+                    age = i.age,
+                    gender = i.gender;
+                root.innerHTML = "\n                  <ul>\n                     <li class=\"list-group-item\">Name: ".concat(name, "</li>\n                     <li class=\"list-group-item\">Age: ").concat(age, "</li>\n                     <li class=\"list-group-item\">Gender: ").concat(gender, "</li>\n                  </ul>\n               ");
+              });
+              _context2.next = 11;
+              break;
+
+            case 7:
+              _context2.prev = 7;
+              _context2.t0 = _context2["catch"](0);
+              console.log(_context2.t0);
+              window.location.href = homeUrl;
+
+            case 11:
+            case "end":
+              return _context2.stop();
+          }
+        }
+      }, _callee2, null, [[0, 7]]);
+    })));
+  });
+}
 },{"@babel/runtime-corejs2/regenerator":"../node_modules/@babel/runtime-corejs2/regenerator/index.js","@babel/runtime-corejs2/helpers/asyncToGenerator":"../node_modules/@babel/runtime-corejs2/helpers/asyncToGenerator.js","@babel/runtime-corejs2/core-js/object/define-property":"../node_modules/@babel/runtime-corejs2/core-js/object/define-property.js","../sass/helperClasses.scss":"../sass/helperClasses.scss","../sass/style.scss":"../sass/style.scss","./fetchApi":"../js/fetchApi.js","./getElements":"../js/getElements.js"}],"../node_modules/parcel-bundler/src/builtins/hmr-runtime.js":[function(require,module,exports) {
 var global = arguments[3];
 var OVERLAY_ID = '__parcel__error__overlay__';
@@ -2629,11 +2677,7 @@ var parent = module.bundle.parent;
 if ((!parent || !parent.isParcelRequire) && typeof WebSocket !== 'undefined') {
   var hostname = "" || location.hostname;
   var protocol = location.protocol === 'https:' ? 'wss' : 'ws';
-<<<<<<< HEAD
-  var ws = new WebSocket(protocol + '://' + hostname + ':' + "52099" + '/');
-=======
-  var ws = new WebSocket(protocol + '://' + hostname + ':' + "52016" + '/');
->>>>>>> master
+  var ws = new WebSocket(protocol + '://' + hostname + ':' + "52145" + '/');
 
   ws.onmessage = function (event) {
     checkedAssets = {};

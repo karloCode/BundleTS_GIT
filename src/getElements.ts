@@ -15,3 +15,7 @@ export function queryButtonElement(id: string): HTMLButtonElement {
 export function queryFormElement(id: string): HTMLFormElement {
    return document.querySelector(`#${id}`) ! as HTMLFormElement;
 }
+
+export function queryListElements(className: string): NodeListOf<Element> {
+   return document.querySelectorAll(`.${className}`) ! as NodeListOf<Element>
+}

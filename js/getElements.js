@@ -18,3 +18,7 @@ function queryFormElement(id) {
     return document.querySelector(`#${id}`);
 }
 exports.queryFormElement = queryFormElement;
+function queryListElements(className) {
+    return document.querySelectorAll(`.${className}`);
+}
+exports.queryListElements = queryListElements;

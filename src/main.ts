@@ -134,7 +134,7 @@ function submitAddForm(form: HTMLFormElement, formBody: object) {
          const list = listElem('err-msg');
          list.forEach(li => {
             li.children[0].addEventListener('click', () => {
-               li.remove();
+               li.remove()
             })
          })
       }
